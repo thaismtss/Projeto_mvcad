@@ -1,5 +1,6 @@
 import csv
-
+import psycopg2
+from pg import DB
 
 def ler_arquivo():
     with open('curso-mvcad.csv', encoding="utf8") as file:
