@@ -1,16 +1,25 @@
 import csv
-import psycopg2
-from pg import DB
+from pessoa import insert_pessoa, retorna_pessoas, retorna_pessoa,remove_pessoa
 
 def ler_arquivo():
     with open('curso-mvcad.csv', encoding="utf8") as file:
         leitor = csv.DictReader(file, delimiter=',')
 
-        # List Comprehention
-        lista_pessoas = [item for item in leitor]
-        print(lista_pessoas)
+        for pessoa in leitor:
+            cpf = pessoa['cpf'].replace('.', '')
+            pessoa['cpf'] = cpf.replace('-', '')
+            insert_pessoa(pessoa)
 
-        for item in lista_pessoas:
-            print(item)
+retorna_pessoas()
+# ler_arquivo()
 
-ler_arquivo()
+# pessoa = {
+#     'nome': "Priscila",
+#     'endereco': "Vila Nova",
+#     'cpf': '01234567899',
+#     'estado': "Santa Catarina",
+#     'turma': "MVCAD Python 1",
+#     'periodo': "matutino",
+#     'modulo': "MVCAD"
+# }
+# insert_pessoa(pessoa)
